@@ -829,7 +829,7 @@ class Mark {
     this.opt = opt;
     let totalMatches = 0,
       fn = 'wrapMatches';
-      this.log('Fetching separated keywords for ', sv);
+    this.log('Fetching separated keywords for ', sv);
     const {
         keywords: kwArr,
         length: kwArrLen
