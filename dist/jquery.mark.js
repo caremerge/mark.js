@@ -1131,6 +1131,7 @@
           });
         };
 
+        this.log('***mark function passed with ', sv);
         this.log('keyword array "' + kwArr + '"');
         this.log('keyword array length "' + kwArrLen + '"');
 
