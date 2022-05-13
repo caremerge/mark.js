@@ -829,6 +829,7 @@ class Mark {
     this.opt = opt;
     let totalMatches = 0,
       fn = 'wrapMatches';
+      this.log('Fetching separated keywords for ', sv);
     const {
         keywords: kwArr,
         length: kwArrLen
@@ -854,12 +855,15 @@ class Mark {
           }
         });
       };
+    this.log('keyword array "' + kwArr + '"');
+    this.log('keyword array length "' + kwArrLen + '"');
     if (this.opt.acrossElements) {
       fn = 'wrapMatchesAcrossElements';
     }
     if (kwArrLen === 0) {
       this.opt.done(totalMatches);
     } else {
+      this.log('Calling handler with arguments ', kwArr[0]);
       handler(kwArr[0]);
     }
   }
