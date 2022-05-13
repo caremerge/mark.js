@@ -1,7 +1,7 @@
 /*!***************************************************
 * mark.js v9.0.0
 * https://markjs.io/
-* Copyright (c) 2014–2018, Julian Kühnel
+* Copyright (c) 2014–2022, Julian Kühnel
 * Released under the MIT license https://git.io/vwTVl
 *****************************************************/
 
@@ -729,7 +729,7 @@
             (match = regex.exec(node.textContent)) !== null &&
             match[matchIdx] !== ''
           ) {
-            if (this.opt.separateGroups) {
+            if (this.opt.separateGroups && match.length !== 1){
               node = this.separateGroups(
                 node,
                 match,
@@ -857,6 +857,7 @@
       this.opt = opt;
       let totalMatches = 0,
         fn = 'wrapMatches';
+      this.log('Fetching separated keywords for ', sv);
       const {
           keywords: kwArr,
           length: kwArrLen
@@ -882,12 +883,15 @@
             }
           });
         };
+      this.log('keyword array "' + kwArr + '"');
+      this.log('keyword array length "' + kwArrLen + '"');
       if (this.opt.acrossElements) {
         fn = 'wrapMatchesAcrossElements';
       }
       if (kwArrLen === 0) {
         this.opt.done(totalMatches);
       } else {
+        this.log('Calling handler with arguments ', kwArr[0]);
         handler(kwArr[0]);
       }
     }
